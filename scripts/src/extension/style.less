@@ -1,0 +1,145 @@
+@panel-width: 500px;
+@color-red: #BF3A3A;
+@color-white: #efefef;
+@color-black: #393939;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: @panel-width;
+    color: @color-black;
+}
+
+.player {
+    /*
+    |-----------------------|
+    | .header   | .controls |
+    |-----------------------|
+    | .timeline |   .volume |
+    |-----------------------|
+     */
+
+    @player-padding: 5px;
+    @internal-spacing: 5px;
+    @top-line-height: 20px;
+    @bot-line-height: 8px;
+
+    @btn-size: @top-line-height;
+    @pointer-size: @bot-line-height / 2;
+    @pointer-size-hover: @bot-line-height;
+
+    @right-col-width: (@btn-size + @internal-spacing) * 2;
+    @left-col-width: @panel-width - @player-padding * 2 - @right-col-width;
+
+    width: @panel-width;
+    height: @top-line-height + @bot-line-height + @internal-spacing + @player-padding * 2;
+    padding: @player-padding;
+    display: relative;
+
+    .header {
+        @header-width: @left-col-width;
+        @time-width: 100px;
+
+        float: left;
+        width: @header-width;
+        height: @top-line-height;
+        line-height: @top-line-height;
+
+        .title {
+            float: left;
+            width: @header-width - @time-width;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .time {
+            float: right;
+            width: @time-width;
+            text-align: right;
+        }
+    }
+
+    .controls {
+        float: right;
+        width: @right-col-width;
+        height: @top-line-height;
+
+        button {
+            float: left;
+            display: block;
+            width: @btn-size;
+            height: @btn-size;
+            margin-left: @internal-spacing;
+            border: 0;
+            border-radius: 2px;
+            font-size: 10px;
+            color: @color-white;
+            background-color: @color-red;
+            cursor: pointer;
+
+            &:hover {
+                background-color: lighten(@color-red, 10%)
+            }
+        }
+    }
+
+    .timeline {
+        float: left;
+        width: @left-col-width;
+        height: @bot-line-height;
+        margin-top: @internal-spacing;
+    }
+
+    .volume {
+        float: right;
+        width: @right-col-width - @internal-spacing;
+        height: @bot-line-height;
+        margin-top: @internal-spacing;
+    }
+
+    .rzslider {
+        margin: (@bot-line-height - @pointer-size) / 2 0;
+        display: block;
+
+        .rz-bar-wrapper {
+            padding: 0;
+            margin: 0;
+            height: @pointer-size;
+            cursor: pointer;
+
+            .rz-selection {
+                background-color: @color-red;
+            }
+        }
+
+        .rz-pointer {
+            width: @pointer-size;
+            height: @pointer-size;
+            background-color: darken(@color-red, 20%);
+            top: 0;
+            outline: 0;
+
+            &:after {
+                display: none;
+            }
+        }
+
+        &:hover {
+            .rz-pointer {
+                width: @pointer-size-hover;
+                height: @pointer-size-hover;
+                top: (@pointer-size - @pointer-size-hover) / 2;
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+{
+   "manifest_version": 2,
+   "name": "YouTube Controller",
+   "version": "1.0.0",
+   "default_locale": "en",
+   "description": "This extensions allows you to control any YouTube video tab while viewing other pages.",
+   "icons": {
+      "256": "icons/256.png",
+      "128": "icons/128.png",
+      "48": "icons/48.png",
+      "32": "icons/32.png"
+   },
+   "browser_action": {
+      "default_icon": "icons/32.png",
+      "default_popup": "popup.html"
+   },
+   "author": "Max Prychynenko",
+   "content_scripts": [{
+      "matches": ["*://*.youtube.com/watch?*"],
+      "js": ["scripts/dist/controller.js"]
+   }],
+   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+   "permissions": [ "activeTab", "tabs", "*://*.youtube.com/*" ]
+}

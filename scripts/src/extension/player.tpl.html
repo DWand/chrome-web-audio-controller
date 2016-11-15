@@ -1,0 +1,50 @@
+<div class="player">
+    <div class="header" ng-click="vm.activate()">
+        <span class="title">
+            {{ vm.player.tab.title }}
+        </span>
+        <span class="time">
+            {{ vm.player.state.elapsed | time }} / {{ vm.player.state.duration | time }}
+        </span>
+    </div>
+
+    <div class="controls">
+        <button type="button" ng-if="vm.player.state.paused" ng-click="vm.play()">
+            <i class="fa fa-play"></i>
+        </button>
+        <button type="button" ng-if="!vm.player.state.paused" ng-click="vm.pause()">
+            <i class="fa fa-pause"></i>
+        </button>
+        <button type="button" ng-click="vm.close()">
+            <i class="fa fa-times"></i>
+        </button>
+    </div>
+
+    <div class="timeline" ng-mouseover="vm.blockUpdates()" ng-mouseout="vm.allowUpdates()">
+        <rzslider
+            rz-slider-model="vm.player.state.elapsed"
+            rz-slider-options="{
+                id: vm.player,
+                floor: 0,
+                ceil: vm.player.state.duration,
+                showSelectionBar: true,
+                hideLimitLabels: true,
+                hidePointerLabels: true,
+                onEnd: vm.onTimeChanged
+            }"></rzslider>
+    </div>
+
+    <div class="volume" ng-mouseover="vm.blockUpdates()" ng-mouseout="vm.allowUpdates()">
+        <rzslider
+            rz-slider-model="vm.player.state.volume"
+            rz-slider-options="{
+                id: vm.player,
+                floor: 0,
+                ceil: 100,
+                showSelectionBar: true,
+                hideLimitLabels: true,
+                hidePointerLabels: true,
+                onEnd: vm.onVolumeChanged
+            }"></rzslider>
+    </div>
+</div>
