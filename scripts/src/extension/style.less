@@ -1,5 +1,6 @@
-@panel-width: 500px;
-@color-red: #BF3A3A;
+@panel-width: 530px;
+@color-red: #e62117;
+@color-blue: #507299;
 @color-white: #efefef;
 @color-black: #393939;
 
@@ -32,13 +33,23 @@ body {
     @pointer-size: @bot-line-height / 2;
     @pointer-size-hover: @bot-line-height;
 
+    @logo-size: @top-line-height + @bot-line-height + @internal-spacing;
     @right-col-width: (@btn-size + @internal-spacing) * 2;
-    @left-col-width: @panel-width - @player-padding * 2 - @right-col-width;
+    @left-col-width: @panel-width - @player-padding * 2 - @right-col-width - @logo-size - @internal-spacing;
 
     width: @panel-width;
     height: @top-line-height + @bot-line-height + @internal-spacing + @player-padding * 2;
     padding: @player-padding;
     display: relative;
+
+    .logo {
+        float: left;
+        width: @logo-size;
+        height: @logo-size;
+        margin-right: @internal-spacing;
+        line-height: @logo-size;
+        text-align: center;
+    }
 
     .header {
         @header-width: @left-col-width;
@@ -83,13 +94,7 @@ body {
             border: 0;
             border-radius: 2px;
             font-size: 10px;
-            color: @color-white;
-            background-color: @color-red;
             cursor: pointer;
-
-            &:hover {
-                background-color: lighten(@color-red, 10%)
-            }
         }
     }
 
@@ -116,16 +121,11 @@ body {
             margin: 0;
             height: @pointer-size;
             cursor: pointer;
-
-            .rz-selection {
-                background-color: @color-red;
-            }
         }
 
         .rz-pointer {
             width: @pointer-size;
             height: @pointer-size;
-            background-color: darken(@color-red, 20%);
             top: 0;
             outline: 0;
 
@@ -140,6 +140,74 @@ body {
                 height: @pointer-size-hover;
                 top: (@pointer-size - @pointer-size-hover) / 2;
             }
+        }
+    }
+}
+
+.type-youtube {
+    .logo {
+        color: @color-white;
+        background-color: @color-red;
+
+        &:after {
+            content: 'YT';
+        }
+    }
+
+    .controls {
+        button {
+            color: @color-white;
+            background-color: @color-red;
+
+            &:hover {
+                background-color: lighten(@color-red, 10%)
+            }
+        }
+    }
+
+    .rzslider {
+        .rz-bar-wrapper {
+            .rz-selection {
+                background-color: @color-red;
+            }
+        }
+
+        .rz-pointer {
+            background-color: darken(@color-red, 20%);
+        }
+    }
+}
+
+.type-vk {
+    .logo {
+        color: @color-white;
+        background-color: @color-blue;
+
+        &:after {
+            content: 'VK';
+        }
+    }
+
+    .controls {
+        button {
+            color: @color-white;
+            background-color: @color-blue;
+
+            &:hover {
+                background-color: lighten(@color-blue, 10%)
+            }
+        }
+    }
+
+    .rzslider {
+        .rz-bar-wrapper {
+            .rz-selection {
+                background-color: @color-blue;
+            }
+        }
+
+        .rz-pointer {
+            background-color: darken(@color-blue, 20%);
         }
     }
 }

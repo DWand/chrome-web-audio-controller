@@ -22,6 +22,9 @@ Player.prototype.seekTo = function(seconds) {
 
 Player.prototype.getState = function() {
     return {
+        type: 'youtube',
+        hasPlayer: true,
+        title: document.title,
         paused: this.elem.getPlayerState() !== 1,
         elapsed: this.elem.getCurrentTime(),
         duration: this.elem.getDuration(),

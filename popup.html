@@ -4,7 +4,7 @@
     <title>YouTube Controller</title>
 </head>
 <body ng-controller="AppCtrl as ctrl">
-    <player player="player" ng-repeat="player in ctrl.players"></player>
+    <player player="player" ng-if="player.state.hasPlayer" ng-repeat="player in ctrl.players"></player>
     <script src="scripts/dist/app.js"></script>
 </body>
 </html>

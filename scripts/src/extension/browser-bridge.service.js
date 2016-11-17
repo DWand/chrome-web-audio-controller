@@ -2,8 +2,11 @@ module.exports = BrowserBridge;
 
 function BrowserBridge(Player, $q) {
     this.getPlayers = function() {
-        var queryConfig = {url: '*://*.youtube.com/watch?*'};
         var deferred = $q.defer();
+        var queryConfig = {url: [
+            '*://*.youtube.com/watch?*',
+            '*://vk.com/*'
+        ]};
 
         chrome.tabs.query(queryConfig, function (tabs) {
             var players = [];

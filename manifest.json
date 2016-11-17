@@ -1,12 +1,12 @@
 {
    "manifest_version": 2,
-   "name": "YouTube Controller",
+   "name": "Web Audio Controller",
    "version": "1.0.0",
-   "default_locale": "en",
-   "description": "This extensions allows you to control any YouTube video tab while viewing other pages.",
+   "description": "This extensions allows you to control different kinds of audio players over the web while viewing other pages.",
    "icons": {
       "256": "icons/256.png",
       "128": "icons/128.png",
+      "64": "icons/64.png",
       "48": "icons/48.png",
       "32": "icons/32.png"
    },
@@ -15,10 +15,16 @@
       "default_popup": "popup.html"
    },
    "author": "Max Prychynenko",
+   "web_accessible_resources" : [
+      "/scripts/dist/vk.page.js"
+   ],
    "content_scripts": [{
       "matches": ["*://*.youtube.com/watch?*"],
-      "js": ["scripts/dist/controller.js"]
+      "js": ["scripts/dist/youtube.content.js"]
+   }, {
+      "matches": ["*://vk.com/*"],
+      "js": ["scripts/dist/vk.content.js"]
    }],
    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-   "permissions": [ "activeTab", "tabs", "*://*.youtube.com/*" ]
+   "permissions": [ "activeTab", "tabs", "*://*.youtube.com/*", "*://vk.com/*" ]
 }

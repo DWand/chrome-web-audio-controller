@@ -1,7 +1,9 @@
 module.exports = {
     entry: {
-        app: './scripts/src/extension/app.js',
-        controller: './scripts/src/remote/index.js'
+        'app': './scripts/src/extension/app.js',
+        'youtube.content': './scripts/src/remote/youtube/content.js',
+        'vk.content': './scripts/src/remote/vk/content.js',
+        'vk.page': './scripts/src/remote/vk/page.js',
     },
     output: {
         path: __dirname + '/scripts/dist',

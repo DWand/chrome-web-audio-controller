@@ -9,7 +9,8 @@ function getPlayer() {
     } else if (elem = document.getElementById('movie_player')) {
         PlayerClass = require('./movie.player.js');
     } else {
-        throw new Error('Player is not found!');
+        PlayerClass = require('./dummy.player.js');
+        console.error('Player is not found!');
     }
 
     return new PlayerClass(elem);
@@ -25,8 +26,7 @@ function onMessage(message, sender, sendResponse) {
     } else if (message.cmd === 'seekTo') {
         player.seekTo(message.params.seconds);
     } else if (message.cmd === 'getState') {
-        var state = player.getState();
-        sendResponse({state: state});
+        sendResponse({state: player.getState()});
     } else {
         console.error('Unknown message type:', message);
     }
